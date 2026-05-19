@@ -1,0 +1,9 @@
+
+========== day six of backend ============ 
+middleware
+
+ ========== Day seven of backend 
+ jest  =>  jo bi javascript ye (express ke help sa server) cretae kiya 
+ ho wo shi tareka sa kam kr raha hn ke nhi usko test krna ka kam ata hn  
+
+supertest => jab jest sa express server ko test krta hn toh huma chahiya hota hn supertest
