@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route } from "react-router";
 import Register from './pages/Register';
-import Login from './pages/login';
-import Layout from './layout/layout';
+import Login from './pages/Login';
+import Layout from './layout/Layout';
 import CreateMusic from './pages/CreateMusic';
 import Dasbhoard from './Dashboard/Dasbhoard';
-import Popup from './Component/popup';
+import Popup from './Component/Popup';
 import ProtectedRoute from './Component/ProtectedRoute';
 
 
