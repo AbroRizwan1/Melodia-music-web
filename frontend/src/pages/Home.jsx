@@ -52,9 +52,6 @@ const Home = ({ musicRef, albumRef }) => {
     }, []);
 
 
-    // console.log(albums.musics);
-
-
     return (
         <div className="min-h-screen bg-[#E8EDF2] text-[#1a1a2e] font-sans px-4 sm:px-8 pb-16">
 
