@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router";
-import Popup from "../Component/popup";
+import Popup from '../Component/Popup'
 import { useRegister } from "../Features/Auth/UseRegister";
 
 export default function Register({ onRegister }) {

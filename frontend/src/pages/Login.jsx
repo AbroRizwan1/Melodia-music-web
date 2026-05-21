@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router";
 import { userContext } from "../ContextApi/UserContext";
-import Popup from "../Component/popup";
+import Popup from "../Component/Popup";
 import { useLogin } from "../Features/Auth/UseLogin";
 export default function Login({ onLogin }) {
 
