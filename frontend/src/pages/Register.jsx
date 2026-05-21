@@ -235,7 +235,7 @@ export default function Register({ onRegister }) {
                         <p className="text-center text-[#E8EDF2]/40 text-xs">
                             Already have an account?{" "}
                             <button onClick={(() => {
-                                navigate("/login")
+                                navigate("/")
                             })} className="text-[#C2A56D] hover:underline">Login</button>
                         </p>
                     </form>

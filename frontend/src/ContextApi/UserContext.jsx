@@ -18,7 +18,7 @@ const UserContext = ({ children }) => {
 
         try {
             const res = await axios.get(
-                "http://localhost:3000/api/auth/user",
+                `${import.meta.env.VITE_API_URL}/api/auth/user`,
                 { withCredentials: true }
             );
 
@@ -32,6 +32,7 @@ const UserContext = ({ children }) => {
             setLoading(false); // 🔥 MUST
         }
     };
+
 
     useEffect(() => {
         if (!loading && user) {

@@ -3,7 +3,6 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { userContext } from "../ContextApi/UserContext";
 import Loader from "./Loader";
 
-
 function ProtectedRoute({ children, artistOnly = false }) {
     const { user, loading } = useContext(userContext);
 

@@ -30,7 +30,7 @@ const Home = ({ musicRef, albumRef }) => {
 
     const fetchMusic = async () => {
         try {
-            const res = await axios.get("http://localhost:3000/api/music/", { withCredentials: true });
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/music`, { withCredentials: true });
             setMusic(res.data.musics || []);
         } catch (err) {
             console.log("ERROR:", err.response?.data || err.message);
@@ -39,7 +39,7 @@ const Home = ({ musicRef, albumRef }) => {
 
     const fetchAlbum = async () => {
         try {
-            const res = await axios.get("http://localhost:3000/api/albums", { withCredentials: true });
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/albums`, { withCredentials: true });
             setAlbums(res.data.album);
         } catch (err) {
             console.log(err.message || err.res?.data?.message);
