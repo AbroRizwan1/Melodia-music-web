@@ -9,12 +9,14 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://melodia-music-web.vercel.app"],
+    origin: "https://melodia-music-web.vercel.app",
     credentials: true,
   }),
-);// // prefix
+); // // prefix
+
 app.use("/api/auth", authRoutes);
 app.use("/api/music", musicRouter);
 app.use("/api/albums", albumRouter);
