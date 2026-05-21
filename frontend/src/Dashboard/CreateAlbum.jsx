@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-
 import AlbumList from './AlbumList';
-import { useAlbum } from '../Features/Album/useAlbum';
+import { useAlbum } from '../Features/Album/UseAlbum';
 import { useMusic } from '../Features/Music/UseMusic';
 
 
