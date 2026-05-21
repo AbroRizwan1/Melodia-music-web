@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Layout from './layout/Layout';
 import CreateMusic from './pages/CreateMusic';
 import Dasbhoard from './Dashboard/Dasbhoard';
-import Popup from '../src/Component/Popup'
+import Popup from '../Component/Popup'
 import ProtectedRoute from './Component/ProtectedRoute';
 
 
