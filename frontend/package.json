@@ -1,9 +1,9 @@
 {
-  "name": "spotify",
+  "name": "Meloadia",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
+  "scripts": {g
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
