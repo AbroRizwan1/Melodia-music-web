@@ -38,8 +38,8 @@ async function registerUser(req, res) {
   // save token to cookies
   const result = res.cookie("token", token, {
     httpOnly: true,
-    secure: false, // local dev
-    sameSite: "lax",
+    secure: true, // local dev
+   sameSite: 'None',
   });
 
   res.status(201).json({
@@ -87,7 +87,7 @@ async function loginUser(req, res) {
 
   res.cookie("token", token, {
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "None",
     secure: true,
   });
 
@@ -106,7 +106,7 @@ async function loginUser(req, res) {
 async function logoutUser(req, res) {
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "None",
     secure: true,
   });
 
