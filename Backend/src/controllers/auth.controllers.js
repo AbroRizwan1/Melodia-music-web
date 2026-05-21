@@ -87,8 +87,8 @@ async function loginUser(req, res) {
 
   res.cookie("token", token, {
     httpOnly: true,
-    secure: false, // local dev
     sameSite: "lax",
+    secure: true,
   });
 
   res.status(200).json({
@@ -107,7 +107,7 @@ async function logoutUser(req, res) {
   res.clearCookie("token", {
     httpOnly: true,
     sameSite: "lax",
-    secure: false,
+    secure: true,
   });
 
   res.status(200).json({
@@ -124,7 +124,7 @@ async function currentUser(req, res) {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    const user = await userModel.findById(decoded.id).select("username role");;
+    const user = await userModel.findById(decoded.id).select("username role");
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
