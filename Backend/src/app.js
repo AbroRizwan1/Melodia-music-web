@@ -29,6 +29,7 @@ app.use(
     origin: [
       "https://melodia-music-web.vercel.app",
       "http://localhost:5173",
+      "melodia-music-web-le3r.vercel.app",
       "https://melodia-music-web-le3r-git-main-abrorizwan1s-projects.vercel.app",
     ],
     credentials: true,
