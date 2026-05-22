@@ -24,13 +24,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-  }),
-);
-
+app.use(cors({
+  origin: [
+    "https://melodia-music-web-v9jq.vercel.app",
+    "http://localhost:5173"
+  ],
+  credentials: true,
+}));
 app.use("/api/auth", authRoutes);
 app.use("/api/music", musicRouter);
 app.use("/api/albums", albumRouter);
