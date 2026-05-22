@@ -12,6 +12,7 @@ export default function Register({ onRegister }) {
     const strengthLabel = ["", "Weak", "Good", "Strong"];
     const strengthColor = ["", "bg-red-400", "bg-yellow-400", "bg-green-400"];
 
+
     return (
         <div className="min-h-screen bg-[#E8EDF2] flex items-center justify-center px-4">
             <div className="w-full max-w-lg">
@@ -33,7 +34,7 @@ export default function Register({ onRegister }) {
                         <p className="text-[#E8EDF2]/60 text-sm mt-1">Join the music community</p>
                     </div>
 
-            
+
                     {/* Form */}
                     <form onSubmit={handleSubmit} className="px-8 py-6 space-y-5">
 
