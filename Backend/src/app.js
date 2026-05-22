@@ -14,8 +14,9 @@ app.use(
   cors({
     origin: ["https://melodia-music-web.vercel.app", "http://localhost:5173"],
     credentials: true,
-  })
+  }),
 );
+app.options("*", cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/music", musicRouter);
