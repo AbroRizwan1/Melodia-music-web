@@ -26,7 +26,11 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: ["https://melodia-music-web.vercel.app", "http://localhost:5173"],
+    origin: [
+      "https://melodia-music-web.vercel.app",
+      "http://localhost:5173",
+      "https://melodia-music-web-le3r-git-main-abrorizwan1s-projects.vercel.app",
+    ],
     credentials: true,
   }),
 );
