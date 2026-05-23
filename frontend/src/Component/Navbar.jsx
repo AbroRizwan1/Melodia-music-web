@@ -9,9 +9,9 @@ export default function Navbar({ handleClick, inputRef }) {
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const navigate = useNavigate();
-  const { logout } = useContext(userContext);
+  const { user, logout } = useContext(userContext);
 
-  
+
   const handleLogout = async (e) => {
     e.preventDefault();
     await logout();

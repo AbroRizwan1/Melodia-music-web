@@ -42,7 +42,7 @@ export default function MusicDashboard() {
   const [active, setActive] = useState("create-music");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const { logout } = useContext(userContext);
+  const { user, logout } = useContext(userContext);
 
   const navigate = useNavigate();
 
