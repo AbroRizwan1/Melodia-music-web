@@ -22,7 +22,6 @@ export function useLogin() {
 
   const { user, loading, FetchCurrentUser } = useContext(userContext);
 
-
   async function handleSubmit(e) {
     e.preventDefault();
 

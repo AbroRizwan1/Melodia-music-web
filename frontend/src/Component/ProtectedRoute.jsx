@@ -9,7 +9,7 @@ function ProtectedRoute({ children, artistOnly = false }) {
     if (loading) return <Loader />;
 
     if (!user) {
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/" replace />;
     }
 
     if (artistOnly && user?.role !== "artist") {
