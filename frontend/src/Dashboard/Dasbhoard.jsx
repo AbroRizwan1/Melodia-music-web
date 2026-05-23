@@ -42,9 +42,9 @@ export default function MusicDashboard() {
   const [active, setActive] = useState("create-music");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const { user } = useContext(userContext)
+  const { logout } = useContext(userContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [toast, setToast] = useState(null);
   const [submissions, setSubmissions] = useState({ music: [], albums: [] });
@@ -59,17 +59,7 @@ export default function MusicDashboard() {
 
   const handleLogout = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post(
-        "http://localhost:3000/api/auth/logout",
-        {},
-        { withCredentials: true }
-      );
-      navigate("/");
-      console.log(res.data.message);
-    } catch (error) {
-      console.log(error.response?.data || error.message);
-    }
+    await logout();
   };
 
 

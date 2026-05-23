@@ -9,30 +9,12 @@ export default function Navbar({ handleClick, inputRef }) {
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const navigate = useNavigate();
-  const { user, setUser } = useContext(userContext);
+  const { logout } = useContext(userContext);
 
   const handleLogout = async (e) => {
     e.preventDefault();
-   
-    setLogoutLoading(true);
-    try {
-   
-      const res = await axios.post(
-        "http://localhost:3000/api/auth/logout",
-        {},
-        { withCredentials: true }
-      );
+    await logout();
 
-      setShowLogoutConfirm(false);
-
-      navigate("/");
-
-    } catch (error) {
-
-      console.log(error.response?.data || error.message);
-
-      setLogoutLoading(false);
-    }
   };
 
   const links = ["Track", "Album"];

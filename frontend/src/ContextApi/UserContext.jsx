@@ -15,24 +15,35 @@ const UserContext = ({ children }) => {
 
     const FetchCurrentUser = async () => {
         setLoading(true);
-
         try {
             const res = await axios.get(
                 `${import.meta.env.VITE_API_URL}/api/auth/user`,
                 { withCredentials: true }
             );
-
             setUser(res.data.user);
-
         } catch (err) {
             setUser(null);
             console.log(err.response?.data || err.message);
-
         } finally {
-            setLoading(false); // 🔥 MUST
+            setLoading(false);
         }
     };
 
+    // ✅ Yeh add karo
+    const logout = async () => {
+        try {
+            await axios.post(
+                `${import.meta.env.VITE_API_URL}/api/auth/logout`,
+                {},
+                { withCredentials: true }
+            );
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setUser(null);
+            navigate("/");
+        }
+    };
 
     useEffect(() => {
         if (!loading && user) {
@@ -44,10 +55,9 @@ const UserContext = ({ children }) => {
         }
     }, [user, loading]);
 
-
-
     return (
-        <userContext.Provider value={{ user, setUser, loading, FetchCurrentUser }}>
+
+        <userContext.Provider value={{ user, setUser, loading, FetchCurrentUser, logout }}>
             {children}
         </userContext.Provider>
     );
