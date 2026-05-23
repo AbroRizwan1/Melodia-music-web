@@ -4,8 +4,10 @@ const musicModel = require("../models/music.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const albumModel = require("../models/album.model");
+const connectDB = require("../db/db");
 
 async function registerUser(req, res) {
+  await connectDB();
   const { username, email, password, role = "user" } = req.body;
 
   const isUserAlreadyExist = await userModel.findOne({
@@ -39,7 +41,7 @@ async function registerUser(req, res) {
   const result = res.cookie("token", token, {
     httpOnly: true,
     secure: true, // local dev
-   sameSite: 'None',
+    sameSite: "None",
   });
 
   res.status(201).json({
@@ -55,6 +57,7 @@ async function registerUser(req, res) {
 }
 
 async function loginUser(req, res) {
+  await connectDB();
   const { username, email, password } = req.body;
 
   const user = await userModel.findOne({
@@ -104,6 +107,7 @@ async function loginUser(req, res) {
 }
 
 async function logoutUser(req, res) {
+  await connectDB();
   res.clearCookie("token", {
     httpOnly: true,
     sameSite: "None",
