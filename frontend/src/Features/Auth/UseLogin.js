@@ -22,7 +22,7 @@ export function useLogin() {
 
   const { user, loading, FetchCurrentUser } = useContext(userContext);
 
-  if (!user) return null; 
+  if (!user) return null;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -52,6 +52,10 @@ export function useLogin() {
       });
     }
   }
+
+  useEffect(() => {
+    FetchCurrentUser();
+  }, []);
 
   return {
     form,

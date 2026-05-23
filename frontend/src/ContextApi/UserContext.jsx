@@ -45,6 +45,7 @@ const UserContext = ({ children }) => {
         }
     };
 
+
     useEffect(() => {
         if (!loading && user) {
             if (user.role === "artist") {

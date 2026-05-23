@@ -144,9 +144,12 @@ export default function MusicDashboard() {
               </div>
             </div>
             <div className="text-white flex gap-5 items-center justify-center">
-              <h1>
-                {user.username}
-              </h1>
+
+              {user && (
+                <h1>
+                  {user.username}
+                </h1>
+              )}
               <button
                 onClick={handleLogout}
                 title="Logout"
