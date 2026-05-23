@@ -40,6 +40,7 @@ const UserContext = ({ children }) => {
             console.log(error);
         } finally {
             setUser(null);
+            setLoading(false);
             navigate("/");
         }
     };

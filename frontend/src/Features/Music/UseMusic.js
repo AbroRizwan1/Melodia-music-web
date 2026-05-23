@@ -1,5 +1,3 @@
-// src/features/music/useMusic.js
-
 import { useEffect, useState } from "react";
 
 import { createMusic, updateMusic, deleteMusic, getMusic } from "./MusicApi";
@@ -15,32 +13,58 @@ export function useMusic(initialMusicForm, showToast) {
 
   const [music, setMusic] = useState([]);
 
-  function handleImageChange(e) {
-    const file = e.target.files[0];
+  const [isUploading, setIsUploading] = useState(false);
 
-    if (!file) return;
+  async function handleMusicSubmit() {
+    const errs = validateMusic(musicForm, editMusic);
 
-    if (!file.type.startsWith("image/")) {
-      setMusicErrors((err) => ({
-        ...err,
-        image: "Only image files allowed.",
-      }));
+    setMusicErrors(errs);
 
-      return;
+    if (Object.keys(errs).length) return;
+
+    if (isUploading) return;
+    setIsUploading(true);
+
+    try {
+      const formData = new FormData();
+
+      formData.append("title", musicForm.title);
+
+      if (musicForm.image) {
+        formData.append("image", musicForm.image);
+      }
+
+      if (musicForm.music) {
+        formData.append("music", musicForm.music);
+      }
+
+      let res;
+
+      if (editMusic?._id) {
+        res = await updateMusic(editMusic._id, formData);
+
+        setMusic((prev) =>
+          prev.map((m) =>
+            m._id === editMusic._id ? res.data.updatedMusic : m,
+          ),
+        );
+
+        showToast("Updated successfully!");
+        setEditMusic(null);
+      } else {
+        res = await createMusic(formData);
+        setMusic((prev) => [...prev, res.data.music]);
+        showToast("Added successfully!");
+      }
+
+      setMusicForm(initialMusicForm);
+      setMusicErrors({});
+      return res.data;
+    } catch (err) {
+      console.log(err.response?.data || err.message);
+    } finally {
+      setIsUploading(false);
     }
-
-    const url = URL.createObjectURL(file);
-
-    setMusicForm((f) => ({
-      ...f,
-      image: file,
-      imagePreview: url,
-    }));
-
-    setMusicErrors((err) => ({
-      ...err,
-      image: "",
-    }));
   }
 
   function handleMusicFileChange(e) {
@@ -173,6 +197,7 @@ export function useMusic(initialMusicForm, showToast) {
     handleMusicFileChange,
     handleMusicSubmit,
     handleEdit,
+    isUploading,
     handleDelete,
   };
 }

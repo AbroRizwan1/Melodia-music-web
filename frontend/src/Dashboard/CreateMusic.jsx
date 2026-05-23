@@ -15,6 +15,7 @@ const CreateMusic = ({ InputField, setSubmissions, showToast, inputStyle, imageR
         setMusicErrors,
         editMusic,
         music,
+        isUploading,
         handleImageChange,
         handleMusicFileChange,
         handleMusicSubmit,
@@ -23,7 +24,7 @@ const CreateMusic = ({ InputField, setSubmissions, showToast, inputStyle, imageR
     } = useMusic(initialMusicForm, showToast);
 
 
-    
+
 
     return (
         <div>
@@ -166,7 +167,7 @@ const CreateMusic = ({ InputField, setSubmissions, showToast, inputStyle, imageR
                             <input ref={musicRef} type="file" accept="audio/*" style={{ display: "none" }} onChange={handleMusicFileChange} />
                         </InputField>
 
-                        <button className="submit-btn" onClick={handleMusicSubmit} style={{ ...btnStyle, width: "100%", boxSizing: "border-box" }}>
+                        <button disabled={isUploading} className="submit-btn" onClick={handleMusicSubmit} style={{ ...btnStyle, width: "100%", boxSizing: "border-box" }}>
                             {editMusic ? "Update Music" : "Add Music"}
                         </button>
                     </div>
