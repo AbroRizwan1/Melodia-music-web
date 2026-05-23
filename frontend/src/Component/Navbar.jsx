@@ -11,10 +11,10 @@ export default function Navbar({ handleClick, inputRef }) {
   const navigate = useNavigate();
   const { logout } = useContext(userContext);
 
+  
   const handleLogout = async (e) => {
     e.preventDefault();
     await logout();
-
   };
 
   const links = ["Track", "Album"];
