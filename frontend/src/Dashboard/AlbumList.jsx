@@ -4,7 +4,6 @@ import { useEffect } from 'react'
 
 const AlbumList = ({ submissions, onDelete, onEdit, handleAlbumSubmit, albums, }) => {
 
-
     return (
         <div>
             <h2 className="ca-section-title">Your Albums</h2>

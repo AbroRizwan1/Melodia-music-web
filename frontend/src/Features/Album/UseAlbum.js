@@ -5,7 +5,6 @@ import {
   updateAlbum,
   deleteAlbum,
   getAlbums,
-  // getMusic,
 } from "./AlbumApi";
 
 import { validateAlbum } from "./AlbumValidation";
@@ -20,20 +19,6 @@ export function useAlbum(initialAlbumForm, showToast) {
   const [albums, setAlbums] = useState([]);
 
   const [editAlbum, setEditAlbum] = useState(null);
-
-  // function toggleId(id) {
-  //   setAlbumForm((f) => ({
-  //     ...f,
-  //     musics: f.musics.includes(id)
-  //       ? f.musics.filter((x) => x !== id)
-  //       : [...f.musics, id],
-  //   }));
-
-  //   setAlbumErrors((err) => ({
-  //     ...err,
-  //     musicIds: "",
-  //   }));
-  // }
 
   function toggleId(id) {
     setAlbumForm((prev) => {
@@ -83,16 +68,6 @@ export function useAlbum(initialAlbumForm, showToast) {
       showToast(message);
     }
   }
-
-  // async function fetchMusic() {
-  //   try {
-  //     const res = await getMusic();
-
-  //     setMusic(res.data.music || []);
-  //   } catch (err) {
-  //     console.log(err.response?.data || err.message);
-  //   }
-  // }
 
   async function fetchAlbum() {
     try {
