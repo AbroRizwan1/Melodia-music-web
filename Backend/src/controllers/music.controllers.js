@@ -97,35 +97,44 @@ async function DeleteMusic(req, res) {
 async function updateMusic(req, res) {
   try {
     const id = req.params.id;
-
     const { title } = req.body;
 
-    const image = req.files?.image?.[0]?.path;
-    const music = req.files?.music?.[0]?.path;
+    let imageUrl;
+    let musicUrl;
+
+    if (req.files?.image?.[0]) {
+      const imageUpload = await uploadFile(
+        req.files.image[0].buffer.toString("base64"),
+        "image",
+      );
+      imageUrl = imageUpload.url;
+    }
+
+    if (req.files?.music?.[0]) {
+      const musicUpload = await uploadFile(
+        req.files.music[0].buffer.toString("base64"),
+        "music",
+      );
+      musicUrl = musicUpload.url;
+    }
 
     const updatedMusic = await musicModel.findOneAndUpdate(
-      {
-        _id: id,
-        artist: req.user.id, // 🔐 ownership check
-      },
+      { _id: id, artist: req.user.id },
       {
         ...(title && { title }),
-        ...(image && { image }),
-        ...(music && { uri: music }),
+        ...(imageUrl && { image: imageUrl }),
+        ...(musicUrl && { uri: musicUrl }),
       },
       { returnDocument: "after" },
     );
 
     if (!updatedMusic) {
-      return res.status(404).json({
-        message: "Music not found or unauthorized",
-      });
+      return res
+        .status(404)
+        .json({ message: "Music not found or unauthorized" });
     }
 
-    res.status(200).json({
-      message: "Music updated",
-      updatedMusic,
-    });
+    res.status(200).json({ message: "Music updated", updatedMusic });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
