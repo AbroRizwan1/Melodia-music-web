@@ -28,21 +28,7 @@ export function useMusic(initialMusicForm, showToast) {
     setMusicErrors((err) => ({ ...err, image: "" }));
   }
 
-  // ✅ Music file change handler
-  function handleMusicFileChange(e) {
-    const file = e.target.files[0];
-    if (!file) return;
 
-    if (!file.type.startsWith("audio/")) {
-      setMusicErrors((err) => ({ ...err, music: "Only audio files allowed." }));
-      return;
-    }
-
-    setMusicForm((f) => ({ ...f, music: file, musicName: file.name }));
-    setMusicErrors((err) => ({ ...err, music: "" }));
-  }
-
-  // ✅ Submit handler — duplicate hata diya
   async function handleMusicSubmit() {
     const errs = validateMusic(musicForm, editMusic);
     setMusicErrors(errs);
