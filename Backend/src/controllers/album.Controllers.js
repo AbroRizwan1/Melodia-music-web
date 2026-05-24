@@ -4,8 +4,10 @@ const albumModel = require("../models/album.model");
 async function createAlbum(req, res) {
   const { title, musics } = req.body;
 
-  if (!title) {
-    console.log("fields are required");
+  if (!title || !musics) {
+    return res.status(400).json({
+      message: "Title and musics are required",
+    });
   }
 
   const album = await albumModel.create({
@@ -26,15 +28,19 @@ async function createAlbum(req, res) {
 }
 
 async function getAllAlbums(req, res) {
-  const album = await albumModel
-    .find()
-    .populate("artist", "username email")
-    .populate("musics", "title image");
+  try {
+    const album = await albumModel
+      .find()
+      .populate("artist", "username email")
+      .populate("musics", "title image");
 
-  res.status(200).json({
-    message: "Album fetched successfully ",
-    album: album,
-  });
+    res.status(200).json({
+      message: "Album fetched successfully",
+      album: album,
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 }
 
 async function getAlbumById(req, res) {
