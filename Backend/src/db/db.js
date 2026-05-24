@@ -7,7 +7,6 @@ async function connectDB() {
   if (isConnected && mongoose.connection.readyState === 1) return;
   
   try {
-    mongoose.set("bufferCommands", false);
     await mongoose.connect(process.env.MONGO_URI, {
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,
